@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Customer WebCenter Access</title>
+<style>
+    * { box-sizing: border-box; }
+    body {
+        margin: 0;
+        font-family: "Segoe UI", Arial, sans-serif;
+        background: #f4f7fb;
+        color: #172033;
+    }
+    header {
+        background: linear-gradient(135deg, #173b70, #2867b2);
+        color: white;
+        padding: 34px 24px 30px;
+        box-shadow: 0 3px 12px rgba(0,0,0,.12);
+    }
+    .header-inner {
+        max-width: 1180px;
+        margin: auto;
+    }
+    h1 { margin: 0 0 8px; font-size: 30px; }
+    .subtitle { margin: 0; opacity: .88; font-size: 15px; }
+    main {
+        max-width: 1180px;
+        margin: 28px auto 50px;
+        padding: 0 20px;
+    }
+    .toolbar {
+        display: flex;
+        gap: 12px;
+        margin-bottom: 22px;
+        flex-wrap: wrap;
+    }
+    #search {
+        flex: 1;
+        min-width: 240px;
+        padding: 13px 16px;
+        border: 1px solid #d4dce8;
+        border-radius: 10px;
+        font-size: 15px;
+        outline: none;
+        background: white;
+    }
+    #search:focus { border-color: #2867b2; box-shadow: 0 0 0 3px rgba(40,103,178,.12); }
+    .count {
+        display: flex;
+        align-items: center;
+        padding: 0 15px;
+        background: white;
+        border: 1px solid #dfe5ee;
+        border-radius: 10px;
+        color: #5b6678;
+        font-size: 14px;
+    }
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(285px, 1fr));
+        gap: 16px;
+    }
+    .card {
+        background: white;
+        border: 1px solid #e1e7ef;
+        border-radius: 13px;
+        padding: 20px;
+        box-shadow: 0 2px 8px rgba(22,39,66,.05);
+        transition: transform .15s ease, box-shadow .15s ease;
+    }
+    .card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 7px 20px rgba(22,39,66,.10);
+    }
+    .customer {
+        font-size: 17px;
+        font-weight: 650;
+        margin-bottom: 15px;
+    }
+    .env {
+        display: inline-block;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: .5px;
+        color: #2867b2;
+        background: #edf5ff;
+        border-radius: 5px;
+        padding: 4px 7px;
+        margin-bottom: 8px;
+        text-transform: uppercase;
+    }
+    .buttons { display: flex; gap: 8px; flex-wrap: wrap; }
+    .btn {
+        display: inline-block;
+        text-decoration: none;
+        color: white;
+        background: #2867b2;
+        padding: 9px 13px;
+        border-radius: 7px;
+        font-size: 13px;
+        font-weight: 600;
+    }
+    .btn:hover { background: #1d548f; }
+    .btn.secondary {
+        background: #eef2f7;
+        color: #344054;
+    }
+    .btn.secondary:hover { background: #e1e7ef; }
+    .empty {
+        display: none;
+        text-align: center;
+        padding: 45px;
+        color: #6b7585;
+        background: white;
+        border-radius: 12px;
+        border: 1px solid #e1e7ef;
+    }
+    footer {
+        text-align: center;
+        color: #7a8494;
+        font-size: 12px;
+        padding: 20px;
+    }
+</style>
+</head>
+<body>
+
+<header>
+    <div class="header-inner">
+        <h1>Customer WebCenter Access</h1>
+        <p class="subtitle">Quick access to customer WebCenter SAML login pages</p>
+    </div>
+</header>
+
+<main>
+    <div class="toolbar">
+        <input id="search" type="search" placeholder="Search customers..." aria-label="Search customers">
+        <div class="count" id="count"></div>
+    </div>
+
+    <div class="grid" id="customerGrid">
+
+        <div class="card" data-name="LINDT SAML">
+            <div class="customer">LINDT SAML</div>
+            <a class="btn" target="_blank" rel="noopener noreferrer" href="https://esko.okta.com/app/esko_wcrsaaslindteskosaascom_1/exk21dcwkd5wU6LxO0h8/sso/saml">Open Production</a>
+        </div>
+
+        <div class="card" data-name="Ever Green Garden">
+            <div class="customer">Ever Green Garden</div>
+            <a class="btn" target="_blank" rel="noopener noreferrer" href="https://esko.okta.com/app/esko_wcrsaasevergreengardeneskosaascom_1/exk1w7wiktpbmPmUw0h8/sso/saml">Open Production</a>
+        </div>
+
+        <div class="card" data-name="Ricola">
+            <div class="customer">Ricola</div>
+            <a class="btn" target="_blank" rel="noopener noreferrer" href="https://esko.okta.com/app/esko_wcrsaasricolaeskosaascom_2/exk1wzi2g7f9TAGGS0h8/sso/saml">Open Production</a>
+        </div>
+
+        <div class="card" data-name="Nestle">
+            <div class="customer">Nestle</div>
+            <a class="btn" target="_blank" rel="noopener noreferrer" href="https://esko.okta.com/app/esko_wcrsaasnestlecontenthubwfeskosaascom_1/exk1wwh0hvrVgNCqk0h8/sso/saml">Open Production</a>
+        </div>
+
+        <div class="card" data-name="P&G">
+            <div class="customer">P&amp;G</div>
+            <a class="btn" target="_blank" rel="noopener noreferrer" href="https://esko.okta.com/app/esko_wcrsaasbispgwcreskosaascom_1/exk21zyestg4mWT3K0h8/sso/saml">Open Production</a>
+        </div>
+
+        <div class="card" data-name="PhilipMorris Prod">
+            <div class="customer">PhilipMorris</div>
+            <div class=></div>
+            <div class="buttons">
+                <a class="btn" target="_blank" rel="noopener noreferrer" href="https://esko.okta.com/app/esko_wcrsaasphilipmorriseskosaascom_1/exk20yy5vx9li6g270h8/sso/saml">Open Production</a>
+            </div>
+            <div class="" style="margin-top:12px;"></div>
+            <div class="buttons">
+                <a class="btn" target="_blank" rel="noopener noreferrer" href="https://esko.okta.com/app/esko_wcrsaasphilipmorrisdeveskosaascom_1/exk1ym8qfcmA81AfE0h8/sso/saml">Open Dev</a>
+            </div>
+        </div>
+
+        <div class="card" data-name="SC Johnson">
+            <div class="customer">SC Johnson</div>
+            <a class="btn" target="_blank" rel="noopener noreferrer" href="https://esko.okta.com/app/esko_wcrsaasscjeskosaascom_1/exk23r7gabpEOWGi70h8/sso/saml">Open Production</a>
+        </div>
+
+        <div class="card" data-name="AMCOR">
+            <div class="customer">AMCOR</div>
+            <a class="btn" target="_blank" rel="noopener noreferrer" href="https://esko.okta.com/app/esko_wcrsaasamcorwcreskosaascom_1/exk1zv3q95pYSqrB20h8/sso/saml">Open Production</a>
+        </div>
+
+        <div class="card" data-name="Bizerba SE Co KG">
+            <div class="customer">Bizerba SE &amp; Co. KG</div>
+            <a class="btn" target="_blank" rel="noopener noreferrer" href="https://esko.okta.com/app/esko_wcrsaasbizerbaeskosaascom_1/exk1vp59griprw5VK0h8/sso/saml">Open Production</a>
+        </div>
+
+        <div class="card" data-name="FRCAM FrieslandCampina">
+            <div class="customer">FRCAM</div>
+            <a class="btn" target="_blank" rel="noopener noreferrer" href="https://esko.okta.com/app/esko_wcrsaasfrieslandcampinawcreskosaascom_1/exk1ztal25dA3dp2O0h8/sso/saml">Open Production</a>
+        </div>
+
+        <div class="card" data-name="NOEL">
+            <div class="customer">NOEL</div>
+            <a class="btn" target="_blank" rel="noopener noreferrer" href="https://esko.okta.com/app/esko_wcrsaasnoeleskosaascom_1/exk1xfq7jmpNhfdWk0h8/sso/saml">Open Production</a>
+        </div>
+
+        <div class="card" data-name="PARSON Parksons Packaging">
+            <div class="customer">PARSON</div>
+            <a class="btn" target="_blank" rel="noopener noreferrer" href="https://esko.okta.com/app/esko_wcrsaasparksonspackagingeskosaascom_1/exk20yy3j5gm5GOnC0h8/sso/saml">Open Production</a>
+        </div>
+
+        <div class="card" data-name="ESSENTRA">
+            <div class="customer">ESSENTRA</div>
+            <a class="btn" target="_blank" rel="noopener noreferrer" href="https://esko.okta.com/app/esko_wcrsaasessentraeskosaascom_1/exk1xaolxy1010bLw0h8/sso/saml">Open Production</a>
+        </div>
+
+        <div class="card" data-name="Uniliver Unilever">
+            <div class="customer">Uniliver</div>
+            <a class="btn" target="_blank" rel="noopener noreferrer" href="https://esko.okta.com/app/esko_wcrsaasunileverglobalartworkeskosaascom_1/exk23q90ohgygGUe30h8/sso/saml">Open Production</a>
+        </div>
+
+        <div class="card" data-name="Florida Natural">
+            <div class="customer">Florida Natural</div>
+            <a class="btn" target="_blank" rel="noopener noreferrer" href="https://esko.okta.com/app/esko_wcrsaasfngeskosaascom_1/exk23ze3hnigF9hD20h8/sso/saml">Open Production</a>
+        </div>
+
+        <div class="card" data-name="Shell International">
+            <div class="customer">Shell International</div>
+            <a class="btn" target="_blank" rel="noopener noreferrer" href="https://esko.okta.com/app/esko_wcrsaaspulselameskosaascom_1/exk21e4blo4Mv3yS10h8/sso/saml">Open Production</a>
+        </div>
+
+        <div class="card" data-name="ELC Beauty LLC">
+            <div class="customer">ELC Beauty LLC</div>
+            <a class="btn" target="_blank" rel="noopener noreferrer" href="https://esko.okta.com/app/esko_wcrsaaselcwcreskosaascom_1/exk1z0865yh0MmKjV0h8/sso/saml">Open Production</a>
+        </div>
+
+        <div class="card" data-name="Hersheys Hershey's">
+            <div class="customer">Hershey's</div>
+            <a class="btn" target="_blank" rel="noopener noreferrer" href="https://hershey.esko-saas.com/hershey/sso.wcr?ssoiid=00001_0000000003">Open Production</a>
+        </div>
+
+        <div class="card" data-name="Cooper Vision">
+            <div class="customer">Cooper Vision</div>
+            <a class="btn" target="_blank" rel="noopener noreferrer" href="https://esko.okta.com/app/esko_wcrsaascoopervisioneskosaascom_1/exk235sart1Tvqj9f0h8/sso/saml">Open Production</a>
+        </div>
+
+        <div class="card" data-name="SMC Packaging">
+            <div class="customer">SMC Packaging</div>
+            <a class="btn" target="_blank" rel="noopener noreferrer" href="https://esko.okta.com/app/esko_wcrsaassmcpackagingtmpeskosaascom_1/exk1x6v85l6x3vMs40h8/sso/saml">Open Production</a>
+        </div>
+
+        <div class="card" data-name="Vertex Pharma">
+            <div class="customer">Vertex Pharma</div>
+            <a class="btn" target="_blank" rel="noopener noreferrer" href="https://esko.okta.com/app/esko_wcrsaasvampeskosaascom_2/exk25mnvdmigrvKlK0h8/sso/saml">Open Production</a>
+        </div>
+
+        <div class="card" data-name="Owens Minors Owens Minor">
+            <div class="customer">Owens- Minors</div>
+            <a class="btn" target="_blank" rel="noopener noreferrer" href="https://esko.okta.com/app/esko_wcrsaasowensminoreskosaascom_2/exk24b38fzpsoemRk0h8/sso/saml">Open Production</a>
+        </div>
+
+        <div class="card" data-name="Alticor Amway Global">
+            <div class="customer">Alticor</div>
+            <a class="btn" target="_blank" rel="noopener noreferrer" href="https://esko.okta.com/app/esko_wcrsaasamwayglobaleskosaascom_1/exk2201tq9zh0QYCa0h8/sso/saml">Open Production</a>
+        </div>
+
+        <div class="card" data-name="Alcon Vision">
+            <div class="customer">Alcon Vision</div>
+            <a class="btn" target="_blank" rel="noopener noreferrer" href="https://esko.okta.com/app/esko_wcrsaasalconprdeskosaascom_1/exk1tfknoepeXa8ZT0h8/sso/saml">Open Production</a>
+        </div>
+
+        <div class="card" data-name="Abbive">
+            <div class="customer">Abbive</div>
+            <a class="btn" target="_blank" rel="noopener noreferrer" href="https://esko.okta.com/app/esko_wcrsaasabbviedeveskosaascom_1/exk23h3d8ljAa4g7a0h8/sso/saml">Open Production</a>
+			<div class="" style="margin-top:12px;"></div>
+			<div class="customer"></div>
+			<a class="btn" target="_blank" rel="noopener noreferrer" href="https://esko.okta.com/app/esko_wcrsaasabbviedev3eskosaascom_1/exk22rkgwo1CmRHe10h8/sso/saml">Open Dev3</a>
+		</div>       
+
+        <div class="card" data-name="StarPak LLC">
+            <div class="customer">StarPak LLC</div>
+            <a class="btn" target="_blank" rel="noopener noreferrer" href="https://esko.okta.com/app/esko_wcrsaasfivestareskosaascom_1/exk1wk77zpy6b6Eby0h8/sso/saml">Open Production</a>
+        </div>
+
+        <div class="card" data-name="KOART Prd">
+            <div class="customer">KOART</div>
+            <a class="btn" target="_blank" rel="noopener noreferrer" href="https://esko.okta.com/app/esko_wcrsaaskoarteskosaascom_1/exk235cu6pcqAWa6R0h8/sso/saml">Open Production</a>
+            <div class="" style="margin-top:12px;"></div>
+                <a class="btn" target="_blank" rel="noopener noreferrer" href="https://esko.okta.com/app/esko_wcrsaaskoarttsteskosaascom_1/exk230jtelxZwa3Vn0h8/sso/saml">Open Test</a>
+        </div>
+
+        <div class="card" data-name="Insmed">
+            <div class="customer">Insmed</div>
+            <div class="buttons"><a class="btn" target="_blank" rel="noopener noreferrer" href="https://esko.okta.com/app/esko_wcrsaasinsmedprd2eskosaascom_1/exk22fgjq5hl3GGd30h8/sso/saml">Open Prod 2</a></div>
+            <div class="" style="margin-top:12px;"></div>
+			<div class="buttons"><a class="btn" target="_blank" rel="noopener noreferrer" href="https://esko.okta.com/app/esko_wcrsaasinsmedtraineskosaascom_1/exk2493wuwwh8bqzi0h8/sso/saml">Open Sandbox</a></div>
+            <div class="" style="margin-top:12px;"></div>
+			<div class="buttons"><a class="btn" target="_blank" rel="noopener noreferrer" href="https://esko.okta.com/app/esko_wcrsaasinsmeddeveskosaascom_1/exk23tdnxvaSjImnE0h8/sso/saml">Open Dev</a></div>
+            <div class="" style="margin-top:12px;"></div>
+			<div class="buttons"><a class="btn" target="_blank" rel="noopener noreferrer" href="https://esko.okta.com/app/esko_wcrsaasinsmedtst2eskosaascom_1/exk22bcfamuUHenuo0h8/sso/saml">Open Test</a></div>			
+		</div>
+		
+		<div class="card" data-name="Food Family Agency">
+            <div class="customer">Food Family Agency</div>
+            <div class="buttons">
+                <a class="btn" target="_blank" rel="noopener noreferrer" href="https://esko.okta.com/app/esko_wcrsaasfoodfamilyeskosaascom_1/exk2231ltcc4wungE0h8/sso/saml">Open Production</a>
+            </div>
+        </div>
+		
+		<div class="card" data-name="Coty Prod">
+            <div class="customer">Coty Brazil</div>
+            <div class="buttons">
+            <a class="btn" target="_blank" rel="noopener noreferrer" href="https://esko.okta.com/app/esko_wcrsaascotybrazileskosaascom_1/exk23r7a6bt7ik0LJ0h8/sso/saml">Open Production</a>
+            </div>
+        </div>
+
+		<div class="card" data-name="Magnum Prod">
+            <div class="customer">Magnum ICC</div>            
+            <div class="buttons">
+                <a class="btn" target="_blank" rel="noopener noreferrer" href="https://esko.okta.com/app/esko_wcrsaasmagnumicecreameskosaascom_1/exk24fbeif9g2aOnT0h8/sso/saml">Open Production</a>
+            </div>
+        </div>
+		
+        <div class="card" data-name="Dole Asia Holdings Pte Ltd">
+            <div class="customer">Dole Asia Holdings Pte Ltd</div>
+            <a class="btn" target="_blank" rel="noopener noreferrer" href="https://esko.okta.com/app/esko_wcrsaasdolesunshineeskosaascom_1/exk22ifllmyub7jTG0h8/sso/saml">Open Production</a>
+        </div>
+				
+        <div class="card" data-name="Arla Foods">
+            <div class="customer">Arla Foods</div>
+            <a class="btn" target="_blank" rel="noopener noreferrer" href="https://esko.okta.com/app/esko_wcrsaasarlaeskosaascom_1/exk1wuquoynL3Vybu0h8/sso/saml">Open Production</a>
+			<div class="buttons">
+		</div>
+		
+		</div>
+        <div class="card" data-name="Ritual">
+            <div class="customer">Ritual</div>
+            <a class="btn" target="_blank" rel="noopener noreferrer" href="https://esko.okta.com/app/esko_wcrsaasritualsprod2eskosaascom_1/exk22iimlkpBPeDCP0h8/sso/saml">Open Production</a>
+        </div>
+		
+        <div class="card" data-name="Merck Prod">
+			<div class="customer">Merck</div>
+            <div class="customer">Validated</div>
+            <a class="btn" target="_blank" rel="noopener noreferrer" href="https://esko.okta.com/app/esko_wcrsaasdnaeskosaascom_1/exk27n4mca5IhoCK00h8/sso/saml">Open Production</a>
+		</div>
+		
+    </div>
+
+    <div class="empty" id="empty">No customer found.</div>
+</main>
+
+<footer>
+    Customer WebCenter Access
+</footer>
+
+<script>
+    const search = document.getElementById("search");
+    const cards = [...document.querySelectorAll(".card")];
+    const count = document.getElementById("count");
+    const empty = document.getElementById("empty");
+
+    function filterCustomers() {
+        const term = search.value.trim().toLowerCase();
+        let visible = 0;
+
+        cards.forEach(card => {
+            const matches = card.dataset.name.toLowerCase().includes(term);
+            card.style.display = matches ? "" : "none";
+            if (matches) visible++;
+        });
+
+        count.textContent = `${visible} customer${visible === 1 ? "" : "s"}`;
+        empty.style.display = visible ? "none" : "block";
+    }
+
+    search.addEventListener("input", filterCustomers);
+    filterCustomers();
+</script>
+
+</body>
+</html>
